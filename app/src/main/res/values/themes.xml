@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SunnyWeather" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.SunnyWeather" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>  <!-- 状态栏颜色 -->
+        <item name="android:navigationBarColor">@color/black</item>          <!-- 导航栏颜色 -->
+    </style>
+
 </resources>
