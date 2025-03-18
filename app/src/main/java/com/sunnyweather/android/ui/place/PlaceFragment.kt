@@ -1,6 +1,7 @@
 package com.sunnyweather.android.ui.place
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sunnyweather.android.databinding.FragmentPlaceBinding
+import com.sunnyweather.android.ui.weather.WeatherActivity
 
 class PlaceFragment : Fragment() {
     val viewModel by lazy { ViewModelProvider(this)[PlaceViewModel::class.java] }
@@ -34,6 +36,18 @@ class PlaceFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // 如果当前已有存储的城市数据，那么就获取已存储的数据并解析成Place对象，然后使用它的经纬度坐标和城市名直接跳转并传递给 WeatherActivity，这样用户就不需要每次都重新搜索并选择城市了
+        if (viewModel.isPlaceSaved()) {
+            val place = viewModel.getSavedPlace()
+            val intent = Intent(context, WeatherActivity::class.java).apply {
+                putExtra("location_lng", place.location.lng)
+                putExtra("location_lat", place.location.lat)
+                putExtra("place_name", place.name)
+            }
+            startActivity(intent)
+            activity?.finish()
+            return
+        }
         // 给 recyclerView 设置 LayoutManager 和适配器
         val layoutManager = LinearLayoutManager(activity)
         binding.recyclerView.layoutManager = layoutManager
