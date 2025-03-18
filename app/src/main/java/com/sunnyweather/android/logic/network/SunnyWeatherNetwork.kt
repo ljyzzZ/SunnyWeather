@@ -14,8 +14,16 @@ object SunnyWeatherNetwork {
 
     private val placeService = ServiceCreator.create<PlaceService>() // 创建PlaceService接口的动态代理对象
 
+    private val weatherService = ServiceCreator.create<WeatherService>()
+
     // suspend：这是一个挂起函数，它可以在协程中被调用，并且可以在执行过程中暂停和恢复
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+
+    suspend fun getRealtimeWeather(lng: String, lat: String) =
+        weatherService.getRealtimeWeather(lng, lat).await()
+
+    suspend fun getDailyWeather(lng: String, lat: String) =
+        weatherService.getDailyWeather(lng, lat).await()
 
     // 自定义 await 扩展函数，将 Retrofit 的异步回调转换为协程的挂起函数，使得代码可以以同步的方式编写
     private suspend fun <T> Call<T>.await(): T {

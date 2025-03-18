@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import com.sunnyweather.android.databinding.ActivityMainBinding
 import com.sunnyweather.android.ui.theme.SunnyWeatherTheme
 
-class MainActivity : FragmentActivity() {
+class MainActivity : FragmentActivity() { // 继承支持Fragment，且适配Material主题的基类（Material组件要引入）
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
