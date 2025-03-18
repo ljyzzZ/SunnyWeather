@@ -1,0 +1,5 @@
+城市数据查询
+https://api.caiyunapp.com/v2/place?query=深圳&token={iE9AscymNW9s89NP}&lang=zh_CN
+城市天气查询
+https://api.caiyunapp.com/v2.5/iE9AscymNW9s89NP/114.085947,22.547/realtime.json
+https://api.caiyunapp.com/v2.5/iE9AscymNW9s89NP/114.085947,22.547/daily.json

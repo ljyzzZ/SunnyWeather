@@ -9,7 +9,7 @@ import java.util.Date
 data class DailyResponse(val status: String, val result: Result) {
     data class Result(val daily: Daily)
     data class Daily(
-        val temperature: List<Temperature>, val skyCon: List<SkyCon>,
+        val temperature: List<Temperature>, val skycon: List<SkyCon>,
         @SerializedName("life_index") val lifeIndex: LifeIndex
     )
 
