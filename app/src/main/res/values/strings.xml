@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SunnyWeather</string>
+    <string name="app_name">Weather</string>
     <string name="addr_str">输入地址</string>
     <string name="forecast_text">预报</string>
     <string name="life_index_text">生活指数</string>

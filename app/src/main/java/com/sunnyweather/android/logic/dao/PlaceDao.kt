@@ -23,6 +23,8 @@ object PlaceDao {
 
     fun isPlaceSaved() = sharedPreferences().contains("place")
 
+    fun placeClear() = sharedPreferences().takeIf { isPlaceSaved() }?.edit()?.clear()
+
     private fun sharedPreferences() =
         SunnyWeatherApplication.context.getSharedPreferences("sunny_weather", Context.MODE_PRIVATE)
 }

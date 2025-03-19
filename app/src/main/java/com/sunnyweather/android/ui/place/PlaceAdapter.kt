@@ -2,13 +2,16 @@ package com.sunnyweather.android.ui.place
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.sunnyweather.android.R
 import com.sunnyweather.android.databinding.ActivityWeatherBinding
 import com.sunnyweather.android.databinding.PlaceItemBinding
 import com.sunnyweather.android.logic.model.Place
 import com.sunnyweather.android.ui.weather.WeatherActivity
+
 
 /**
  * RecyclerView 适配器类
@@ -30,13 +33,9 @@ class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: L
             val place = placeList[position]
             val activity = fragment.activity
             if (activity is WeatherActivity) { // 如果在WeatherActivity中，只需要关闭滑动菜单并给WeatherViewModel赋值
-                val awBinding =
-                    ActivityWeatherBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                awBinding.drawerLayout.closeDrawers()
+                val view = activity.findViewById<View>(R.id.drawerLayout)
+                val weatherBinding = ActivityWeatherBinding.bind(view)
+                weatherBinding.drawerLayout.closeDrawers()
                 activity.viewModel.locationLng = place.location.lng
                 activity.viewModel.locationLat = place.location.lat
                 activity.viewModel.placeName = place.name
